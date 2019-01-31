@@ -1,0 +1,1 @@
+E-commerce app where users can sell/store items for a specified period of time. Items have category, price, name. Users have membership level depending on amount of items they would like to sale. (Bronze, silver, gold.) OAuth with facebook or another social network.
