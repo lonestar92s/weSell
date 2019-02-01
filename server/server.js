@@ -1,17 +1,12 @@
 const express = require('express')
 const { Client } = require('pg')
+const getRouter = require('../controller/router.js')
+
 //set port
 const PORT = 9000
 
 
 
-//set up pg module
-const connectionString = 
-'postgresql://aluko17:@localhost:5432/weSell'
-
-//instantiate the client and pass it the connection string
-const client = new Client({ connectionString })
-client.connect().then(()=>{console.log('client connection')})
 
 //query
 
@@ -19,21 +14,9 @@ client.connect().then(()=>{console.log('client connection')})
 //set app
 let app = express()
 
-//get
-app.get('/items', (req, res)=>{
 
+app.use(getRouter)
 
-	let text ='SELECT item_name, item_price, item_brand, item_category FROM Items'
-	
-
-
-	client.query(text)
-	.then(result => {
-		res.send(result.rows[0])
-	})
-	.catch(error => response.send(error))
-
-})
 
 
 
