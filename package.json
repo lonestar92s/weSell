@@ -1,0 +1,24 @@
+{
+  "name": "wesell",
+  "version": "1.0.0",
+  "description": "E-commerce app where users can sell/store items for a specified period of time. Items have category, price, name. Users have membership level depending on amount of items they would like to sale. (Bronze, silver, gold.) OAuth with facebook or another social network.",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.16.4",
+    "pg": "^7.8.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lonestar92s/weSell.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lonestar92s/weSell/issues"
+  },
+  "homepage": "https://github.com/lonestar92s/weSell#readme"
+}
