@@ -20,16 +20,16 @@ client.connect().then(()=>{console.log('client connection')})
 let app = express()
 
 //get
-app.get('/songs/:id', (req, res)=>{
+app.get('/items', (req, res)=>{
 
 
-	let text ='SELECT * FROM Songs WHERE song_id = $1'
+	let text ='SELECT item_name, item_price, item_brand, item_category FROM Items'
 	
 
 
-	client.query(text, values)
+	client.query(text)
 	.then(result => {
-		res.send(result.rows)
+		res.send(result.rows[0])
 	})
 	.catch(error => response.send(error))
 
@@ -42,3 +42,6 @@ app.get('/songs/:id', (req, res)=>{
 app.listen(PORT, ()=>{
 console.log("we connected")
 })
+
+
+
