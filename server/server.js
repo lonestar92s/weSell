@@ -6,8 +6,8 @@ const bodyParser = require('body-parser')
 
 
 //body parser
-postRouter.use(bodyParser.urlencoded({ extended: false }));
-postRouter.use(bodyParser.json());
+itemRouter.use(bodyParser.urlencoded({ extended: true }));
+itemRouter.use(bodyParser.json());
 
 
 //set port

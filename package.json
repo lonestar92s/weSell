@@ -2,7 +2,7 @@
   "name": "wesell",
   "version": "1.0.0",
   "description": "E-commerce app where users can sell/store items for a specified period of time. Items have category, price, name. Users have membership level depending on amount of items they would like to sale. (Bronze, silver, gold.) OAuth with facebook or another social network.",
-  "main": "index.js",
+  "main": "server.js",
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
