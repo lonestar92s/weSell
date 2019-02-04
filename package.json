@@ -4,6 +4,7 @@
   "description": "E-commerce app where users can sell/store items for a specified period of time. Items have category, price, name. Users have membership level depending on amount of items they would like to sale. (Bronze, silver, gold.) OAuth with facebook or another social network.",
   "main": "index.js",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "nodemon": "^1.18.9",
     "pg": "^7.8.0"
