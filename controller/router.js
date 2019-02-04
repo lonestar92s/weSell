@@ -13,13 +13,23 @@ client.connect().then(()=>{console.log('client connection')})
 
 
 //get
-router.get('/items', (req, res)=>{
-	let text ='SELECT item_name, item_price, item_brand, item_category FROM Items'
-	client.query(text)
+router.get('/', (req, res)=>{
+	let query ='SELECT item_name, item_price, item_brand, item_category FROM Items'
+	client.query(query)
 	.then(result => {
 		res.send(result.rows)
 	})
-	.catch(error => response.send(error))
+	.catch(error => res.send(error))
+})
+
+//post
+router.post('/', (req, res)=>{
+	let query ='INSERT INTO Items(item_id, item_name, item_category, item_brand, item_price)'
+	client.query(query)
+	.then(result => {
+		res.send(result)
+	})
+	.catch(error => res.send(error))
 })
 
 

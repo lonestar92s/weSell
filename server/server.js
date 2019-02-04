@@ -1,6 +1,14 @@
 const express = require('express')
 const { Client } = require('pg')
-const getRouter = require('../controller/router.js')
+const itemRouter = require('../controller/router.js')
+const bodyParser = require('body-parser')
+
+
+
+//body parser
+postRouter.use(bodyParser.urlencoded({ extended: false }));
+postRouter.use(bodyParser.json());
+
 
 //set port
 const PORT = 9000
@@ -8,14 +16,13 @@ const PORT = 9000
 
 
 
-//query
-
 
 //set app
 let app = express()
 
 
-app.use(getRouter)
+app.use('/items', itemRouter)
+
 
 
 
