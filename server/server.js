@@ -3,11 +3,14 @@ const { Client } = require('pg')
 const itemRouter = require('../controller/router.js')
 const bodyParser = require('body-parser')
 
+//set app
+let app = express()
+
 
 
 //body parser
-itemRouter.use(bodyParser.urlencoded({ extended: true }));
-itemRouter.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 
 //set port
@@ -16,9 +19,6 @@ const PORT = 9000
 
 
 
-
-//set app
-let app = express()
 
 
 app.use('/items', itemRouter)

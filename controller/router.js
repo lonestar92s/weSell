@@ -2,55 +2,60 @@ const express = require('express')
 const router = express.Router()
 const { Client } = require('pg')
 const bodyParser = require('body-parser')
+let app = express()
+
+
+
+//body parser
+  app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 
 
 //set up pg module
-const connectionString =
-    'postgresql://aluko17:@localhost:5432/weSell'
+const connectionString = 
+'postgresql://aluko17:@localhost:5432/weSell'
 
 
 const client = new Client({ connectionString })
-client.connect().then(() => { console.log('client connection') })
+client.connect().then(()=>{console.log('client connection')})
 
 
 //get all items
-router.get('/', (req, res) => {
-    let query = 'SELECT item_name, item_price, item_brand, item_category FROM Items'
-    client.query(query)
-        .then(result => {
-            res.send(result.rows)
-        })
-        .catch(error => res.send(error))
+router.get('/', (req, res)=>{
+	console.log('hello i am not the right thing router line 17')
+	let query ='SELECT item_name, item_price, item_brand, item_category FROM Items'
+	client.query(query)
+	.then(result => {
+		res.send(result.rows)
+	})
+	.catch(error => res.send(error))
 })
 
+//create
 router.post('/', (req, res) => {
-    let query = 'INSERT INTO items(item_id, item_name) VALUES ($1, $2)'
-    const values = []
-    // SQL Query > Insert Data
-    for (let item in req.body)
-        values.push(req.body[item])
-    // Grab data from http request
-    client.query(query, values)
-        .then(result => {
-            res.send(result.rows)
-        })
-        .catch(error => res.send(error))
 
+  const data = {item_id : req.body.item_id, item_name:req.body.item_name, item_price:req.body.item_price, item_brand:req.body.item_brand, item_category:req.body.item_category};
+  // SQL Query > Insert Data
+  let query ='INSERT INTO Items(item_id, item_name, item_price, item_brand, item_category) VALUES ($1, $2, $3, $4, $5)'
+  // Grab data from http request
+
+    client.query(query, [data.item_id, data.item_name, data.item_price, data.item_brand, data.item_category])
+  		.then(result => {
+		res.send(result.rows)
+	})
+	.catch(error => res.send(error))
+   
+
+})
+//update 
+router.put('/', (req, res)=>{
+	
 })
 
 
 
 
-
-
-
-
-
-
-
-//update
-
-//delete
 
 
 module.exports = router
