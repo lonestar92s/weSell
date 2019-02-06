@@ -1,6 +1,7 @@
 const express = require('express')
 const { Client } = require('pg')
 const itemRouter = require('../controller/router.js')
+const userRouter = require('../controller/userRouter.js')
 const bodyParser = require('body-parser')
 
 //set app
@@ -16,7 +17,7 @@ app.use(bodyParser.json());
 const PORT = 9000
 
 app.use('/items', itemRouter)
-
+app.use('/users', userRouter)
 
 app.listen(PORT, ()=>{
 console.log("we connected")
