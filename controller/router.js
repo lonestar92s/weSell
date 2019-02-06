@@ -50,17 +50,20 @@ router.post('/', (req, res) => {
 })
 //update 
 router.put('/:id', (req, res)=>{
-	let id = req.params.id
-	let query = `UPDATE Items SET item_name ='Standup Paddleboard' WHERE item_id = ${id}` 
-	let query2 = `SELECT * FROM Items WHERE item_id = ${id}`
+	const data = {item_name:req.body.item_name, item_price:req.body.item_price, item_brand:req.body.item_brand, item_category:req.body.item_category}
+	const id = req.params.id
+	let query = `UPDATE Items SET item_name =($1),item_price =($2),item_brand=($3),item_category=($4) WHERE item_id =($5)` 
 	
-	client.query(query)
-	client.query(query2)
+	
+	client.query(query, [data.item_name, data.item_price, data.item_brand, data.item_category, id])
+	
 		.then(result => {
 			res.send(result.rows)
 		})
 		.catch(error => res.send(error))
 })
+
+
 
 
 
