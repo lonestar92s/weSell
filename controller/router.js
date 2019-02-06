@@ -63,6 +63,17 @@ router.put('/:id', (req, res)=>{
 		.catch(error => res.send(error))
 })
 
+//delete
+
+router.delete('/:id', (req,res)=>{
+	const id = req.params.id
+	let query = `DELETE FROM Items WHERE item_id=($1)`
+	client.query(query, [id])
+		.then(result => {
+			res.send(result.rows)
+		})
+		.catch(error => res.send(error))
+})
 
 
 
