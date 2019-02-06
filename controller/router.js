@@ -23,7 +23,7 @@ client.connect().then(()=>{console.log('client connection')})
 
 //get all items
 router.get('/', (req, res)=>{
-	console.log('hello i am not the right thing router line 17')
+	
 	let query ='SELECT item_name, item_price, item_brand, item_category FROM Items'
 	client.query(query)
 	.then(result => {
@@ -49,8 +49,17 @@ router.post('/', (req, res) => {
 
 })
 //update 
-router.put('/', (req, res)=>{
+router.put('/:id', (req, res)=>{
+	let id = req.params.id
+	let query = `UPDATE Items SET item_name ='Standup Paddleboard' WHERE item_id = ${id}` 
+	let query2 = `SELECT * FROM Items WHERE item_id = ${id}`
 	
+	client.query(query)
+	client.query(query2)
+		.then(result => {
+			res.send(result.rows)
+		})
+		.catch(error => res.send(error))
 })
 
 
