@@ -52,7 +52,7 @@ router.post('/', (req, res) => {
 router.put('/:id', (req, res)=>{
 	const data = {username: req.body.username, first_name:req.body.first_name, last_name:req.body.last_name, member_level:req.body.member_level, email:req.body.email, zipcode:req.body.zipcode}
 	const id = req.params.id
-	let query = `UPDATE Customers SET username =($1),first_name =($2),last_name=($3),member_level=($4),email=($5),zipcode=($6) WHERE item_id =($7)` 
+	let query = `UPDATE Customers SET username =($1),first_name =($2),last_name=($3),member_level=($4),email=($5),zipcode=($6) WHERE customer_id =($7)` 
 	
 	
 	client.query(query, [data.username, data.first_name, data.last_name, data.member_level,data.email,data.zipcode, id])

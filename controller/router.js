@@ -32,6 +32,17 @@ router.get('/', (req, res)=>{
 	.catch(error => res.send(error))
 })
 
+//get by user
+router.get('/:username', (req, res)=>{
+	const username = req.params.username
+	let query ='SELECT item_name, item_price, item_brand, item_category FROM Items WHERE username =($1)'
+	client.query(query, [username])
+	.then(result => {
+		res.send(result.rows)
+	})
+	.catch(error => res.send(error))
+})
+
 //create
 router.post('/', (req, res) => {
 
