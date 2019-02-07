@@ -43,6 +43,18 @@ router.get('/:username', (req, res)=>{
 	.catch(error => res.send(error))
 })
 
+//get by furniture category
+router.get('/category/:item_category', (req, res)=>{
+	const category = req.params.item_category
+	let query ='SELECT item_name, item_price, item_brand, username FROM Items WHERE item_category =($1)'
+	client.query(query, [category])
+	.then(result => {
+		res.send(result.rows)
+	})
+	.catch(error => res.send(error))
+})
+
+
 //create
 router.post('/', (req, res) => {
 
