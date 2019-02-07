@@ -21,7 +21,7 @@ const client = new Client({ connectionString })
 client.connect().then(()=>{console.log('client connection')})
 
 
-//get all items
+//get all users
 router.get('/', (req, res)=>{
 	
 	let query ='SELECT username, first_name, last_name, member_level, email, zipcode FROM Customers'
@@ -32,7 +32,7 @@ router.get('/', (req, res)=>{
 	.catch(error => res.send(error))
 })
 
-//create
+//create new user
 router.post('/', (req, res) => {
 
   const data = {customer_id : req.body.customer_id, username:req.body.username, first_name:req.body.first_name, last_name:req.body.last_name, member_level:req.body.member_level, email: req.body.email, zipcode: req.body.zipcode };
@@ -48,7 +48,7 @@ router.post('/', (req, res) => {
    
 
 })
-//update 
+//update current user
 router.put('/:id', (req, res)=>{
 	const data = {username: req.body.username, first_name:req.body.first_name, last_name:req.body.last_name, member_level:req.body.member_level, email:req.body.email, zipcode:req.body.zipcode}
 	const id = req.params.id
@@ -63,7 +63,7 @@ router.put('/:id', (req, res)=>{
 		.catch(error => res.send(error))
 })
 
-//delete
+//delete user
 
 router.delete('/:id', (req,res)=>{
 	const id = req.params.id

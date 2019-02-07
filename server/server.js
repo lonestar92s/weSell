@@ -2,6 +2,7 @@ const express = require('express')
 const { Client } = require('pg')
 const itemRouter = require('../controller/router.js')
 const userRouter = require('../controller/userRouter.js')
+const morgan = require('morgan')
 const bodyParser = require('body-parser')
 
 
@@ -11,10 +12,11 @@ let app = express()
 //error handler
 app.use(function (err, req, res, next) {
   console.error(err.message)
-  res.status(500).send('Oh noooo')
+  res.status(404).send('Oh noooo')
 })
 
 //body parser
+app.use(morgan('dev'))
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 

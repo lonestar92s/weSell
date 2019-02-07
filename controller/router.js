@@ -22,7 +22,7 @@ client.connect().then(()=>{console.log('client connection')})
 
 
 //get all items
-router.get('/', (req, res)=>{
+router.get('/', (req, res, next)=>{
 	
 	let query ='SELECT item_name, item_price, item_brand, item_category FROM Items'
 	client.query(query)
@@ -55,7 +55,7 @@ router.get('/category/:item_category', (req, res)=>{
 })
 
 
-//create
+//create new item
 router.post('/', (req, res) => {
 
   const data = {item_id : req.body.item_id, item_name:req.body.item_name, item_price:req.body.item_price, item_brand:req.body.item_brand, item_category:req.body.item_category};
@@ -71,7 +71,7 @@ router.post('/', (req, res) => {
    
 
 })
-//update 
+//update current item
 router.put('/:id', (req, res)=>{
 	const data = {item_name:req.body.item_name, item_price:req.body.item_price, item_brand:req.body.item_brand, item_category:req.body.item_category}
 	const id = req.params.id
@@ -86,7 +86,7 @@ router.put('/:id', (req, res)=>{
 		.catch(error => res.send(error))
 })
 
-//delete
+//delete current item
 
 router.delete('/:id', (req,res)=>{
 	const id = req.params.id
