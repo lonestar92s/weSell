@@ -35,7 +35,7 @@ router.get('/', (req, res)=>{
 //create new user
 router.post('/', (req, res) => {
 
-  const data = {customer_id : req.body.customer_id, username:req.body.username, first_name:req.body.first_name, last_name:req.body.last_name, member_level:req.body.member_level, email: req.body.email, zipcode: req.body.zipcode };
+  const data = {customer_id:req.body.customer_id, username:req.body.username, first_name:req.body.first_name, last_name:req.body.last_name, member_level:req.body.member_level, email: req.body.email, zipcode: req.body.zipcode };
   // SQL Query > Insert Data
   let query ='INSERT INTO Customers(customer_id, username, first_name, last_name, member_level, email, zipcode) VALUES ($1, $2, $3, $4, $5, $6, $7)'
   // Grab data from http request

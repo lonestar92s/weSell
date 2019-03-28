@@ -24,7 +24,7 @@ client.connect().then(()=>{console.log('client connection')})
 //get all items
 router.get('/', (req, res, next)=>{
 	
-	let query ='SELECT item_name, item_price, item_brand, item_category FROM Items'
+	let query ='SELECT item_id, item_name, item_price, item_brand, item_category, image_url, item_description FROM Items ORDER BY item_id'
 	client.query(query)
 	.then(result => {
 		res.send(result.rows)
@@ -58,12 +58,12 @@ router.get('/category/:item_category', (req, res)=>{
 //create new item
 router.post('/', (req, res) => {
 
-  const data = {item_id : req.body.item_id, item_name:req.body.item_name, item_price:req.body.item_price, item_brand:req.body.item_brand, item_category:req.body.item_category};
+  const data = {item_id : req.body.item_id, item_name:req.body.item_name, item_price:req.body.item_price, item_brand:req.body.item_brand, item_category:req.body.item_category, image_url:req.body.image_url};
   // SQL Query > Insert Data
-  let query ='INSERT INTO Items(item_id, item_name, item_price, item_brand, item_category) VALUES ($1, $2, $3, $4, $5)'
+  let query ='INSERT INTO Items(item_id, item_name, item_price, item_brand, item_category, image_url) VALUES ($1, $2, $3, $4, $5, $6)'
   // Grab data from http request
 
-    client.query(query, [data.item_id, data.item_name, data.item_price, data.item_brand, data.item_category])
+    client.query(query, [data.item_id, data.item_name, data.item_price, data.item_brand, data.item_category, data.image_url])
   		.then(result => {
 		res.send(result.rows)
 	})
@@ -97,8 +97,6 @@ router.delete('/:id', (req,res)=>{
 		})
 		.catch(error => res.send(error))
 })
-
-
 
 
 
